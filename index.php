@@ -58,3 +58,194 @@
 
 /* 14. Sélectionnez et affichez tous les utilisateurs dont l'id est situé entre 2 et 4 */
 // TODO Votre code ici.
+
+
+require "./Classes/DB.php";
+$db = DB::getInstance();
+
+
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+<?php
+
+$search = $db->prepare("SELECT * FROM user WHERE nom = 'Conor'");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE prenom != 'John'");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE id <= 2");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE id >= 2");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE id = 1");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE id > 1 AND nom ='Doe'");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE prenom = 'John' AND nom ='Doe'");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE prenom = 'Jane' OR nom ='Conor'");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user LIMIT 2");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user ORDER BY id asc LIMIT 1");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE nom LIKE 'C___r'");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE nom LIKE '%e%'");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE prenom IN ('John', 'Sarah')");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+
+$search = $db->prepare("SELECT * FROM user WHERE id BETWEEN 2 AND 4");
+
+$state = $search->execute();
+
+echo "<div class='container'>";
+if($state) {
+    foreach ($search->fetchAll() as $user) {
+        echo "<div class='user'>Utilisateur $user[id]: $user[prenom] $user[nom]</div>";
+    }
+}
+echo "</div>";
+?>
+?>
+</body>
+</html>
